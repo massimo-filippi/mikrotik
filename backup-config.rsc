@@ -4,7 +4,8 @@
 ##
 ##   script by Maxim Krusina, maxim@mfcc.cz
 ##   created: 2014-03-09
-##   updated: 2015-12-04
+##   updated: 2015-12-05
+##   tested on: RouterOS 6.33.1 / multiple HW devices
 ##
 
 
@@ -53,4 +54,8 @@
 ## Upload to .rsc to FTP 2
 /tool fetch address=$ftp2Address src-path="$filename.rsc" user=$ftp2User  mode=ftp password=$ftp2Password dst-path=($ftp2Path . $filename . ".rsc") upload=yes port=21
 
-} else={ :put "Second FTP server not configured" }
+}
+
+
+## Log
+:log info ("Configuration backup created on router $[/system identity get name].")     
