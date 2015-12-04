@@ -5,6 +5,8 @@
 ##   created: 2014-12-05
 ##   updated: 2014-12-13
 ##
+##   WORK IN PROGRESS !!!
+##
 
 /system package update
 check-for-updates
@@ -20,11 +22,14 @@ check-for-updates
 
    ## Wait for mail to be send
    :delay 15s;
-   upgrade
+   ## upgrade
 
 } else={
 
    ## RouterOS latest, let's check for updated firmware
+
+   /tool e-mail send to="maxim@mfcc.cz" subject="No RouterOS upgrade found, checking for HW upgrade" body="No RouterOS upgrade found, checking for HW upgrade"
+
 
    /system routerboard
 
@@ -42,5 +47,10 @@ check-for-updates
       :delay 180s;
       /system reboot
 
+   } else={
+
+   /tool e-mail send to="maxim@mfcc.cz" subject="No Router HW upgrade found" body="No Router HW upgrade found"
+
    }
+
 }
