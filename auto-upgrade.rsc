@@ -1,12 +1,15 @@
 ##
 ##   Automatically Upgrade RouterOS and Firmware
+##   https://github.com/massimo-filippi/mikrotik
+##
 ##   script by Maxim Krusina, maxim@mfcc.cz
 ##   based on: http://wiki.mikrotik.com/wiki/Manual:Upgrading_RouterOS
 ##   created: 2014-12-05
-##   updated: 2014-12-13
+##   updated: 2015-12-04
 ##
 ##   WORK IN PROGRESS !!!
 ##
+
 
 /system package update
 check-for-updates
