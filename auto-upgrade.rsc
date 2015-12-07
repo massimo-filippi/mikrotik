@@ -6,7 +6,7 @@
 ##   based on: http://wiki.mikrotik.com/wiki/Manual:Upgrading_RouterOS
 ##   created: 2014-12-05
 ##   updated: 2015-12-05
-##   tested on: RouterOS 6.33.1 / multiple HW devices
+##   tested on: RouterOS 6.33.1 / multiple HW devices, won't work on 6.27 and older (different update process & value naming)
 ##
 
 
@@ -34,7 +34,7 @@ check-for-updates
 
    ## Wait for mail to be send & upgrade
    :delay 15s;
-   upgrade
+   install
 
 } else={
 
