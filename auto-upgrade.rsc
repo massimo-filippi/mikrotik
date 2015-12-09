@@ -5,7 +5,7 @@
 ##   script by Maxim Krusina, maxim@mfcc.cz
 ##   based on: http://wiki.mikrotik.com/wiki/Manual:Upgrading_RouterOS
 ##   created: 2014-12-05
-##   updated: 2015-12-05
+##   updated: 2015-12-09
 ##   tested on: RouterOS 6.33.1 / multiple HW devices, won't work on 6.27 and older (different update process & value naming)
 ##
 
@@ -26,6 +26,7 @@ check-for-updates
 ## Waint on slow connections
 :delay 15s;
 
+## Important note: "installed-version" was "current-version" on older Roter OSes
 :if ([get installed-version] != [get latest-version]) do={ 
 
    ## New version of RouterOS available, let's upgrade
@@ -34,6 +35,8 @@ check-for-updates
 
    ## Wait for mail to be send & upgrade
    :delay 15s;
+   
+   ## "install" command is reincarnation of the "upgrade" command - doing exactly the same but under a different name
    install
 
 } else={
