@@ -30,7 +30,7 @@ Using Winbox / Web admin (if you are familiar with command line, you already kno
 ## backup-config.rsc
 
 This script backups your MikroTik's configuration and uploads it to FTP server (or optionally to two FTP servers).
-Backup is saved in twi different file formats:
+Backup is saved in two different file formats:
 - .backup is binary format, useful for restoring config to same hardware (model).
 - .rsc is plain text format, useful for editing and possible restoring to a different MikroTik hardware.
 Version number is attached to all files, so you always have latest backup from each RouterOS version.
