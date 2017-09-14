@@ -52,6 +52,33 @@ Warning: FTP protocol is not encrypted, so all information is transmitted unencr
 because all data are pushed thru encrypted VPN channels, but the security can be improved here!
 
 
+
+## message-to-slack.rsc
+
+This script allow to send messages from RouterOS to Slack channel.
+There is no way how to call webhooks from RouterOS, so it uses workaround using /tool fetch command.
+
+### Installation
+
+Slack
+- Generate your API token here: https://api.slack.com/docs/oauth-test-tokens
+- More information here: http://jeremyhall.com.au/mikrotik-routeros-slack-messaging-hack/
+
+Using Winbox / Web admin (if you are familiar with command line, you already know hot to do it :)
+- Go to *System / Scripts, Add new*
+- Name it, ie. "MessageToSlack", select required policies (if you are lazy like me, select all boxes)
+- Paste source code to *Source* field
+- Edit variables *botname* and *token* in section *Set variables* regarding your needs
+- Save script
+- Call it from another scripts using:
+```
+:global SlackMessage "my message"
+:global SlackChannel "my-channel"
+/system script run MessageToSlack;
+```
+
+
+
 Nice MikroTik'ing
 Maxim Krušina, Massimo Filippi, s.r.o.
 maxim@mfcc.cz

@@ -5,31 +5,35 @@
 ##   script by Maxim Krusina, maxim@mfcc.cz
 ##   based on: http://jeremyhall.com.au/mikrotik-routeros-slack-messaging-hack/
 ##   created: 2017-08-21
-##   updated: 2017-08-21
+##   updated: 2017-09-14
 ##
 ##  usage:
 ##  generate your API token here: https://api.slack.com/docs/oauth-test-tokens
 ##  (more information here: http://jeremyhall.com.au/mikrotik-routeros-slack-messaging-hack/)
-##  in another script, first setup global variable then call this script:
+##  in another script, first setup global variables then call this script.
 ##
-##  :global message "Test message"
-##  /system script run message-to-slack;
+##  IMPORTANT NOTE: write channel name without leading # character
+##
+##  :global SlackMessage "my message"
+##  :global SlackChannel "my-channel"
+##  /system script run MessageToSlack;
 ##
 
 
-:global message;
-:global messageencoded "";
+:global SlackMessage;
+:global SlackChannel;
+:local messageencoded "";
+
 
 :local botname "MikroTik"
-:local channel "%23test"
 :local token "xoxp-your-token-here"
 :local iconurl https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-12-08/16227284950_0c4cfc4b66e68c6273ad_48.jpg
 
 
 #replace ASCII characters with URL encoded characters
 
-:for i from=0 to=([:len $message] - 1) do={
-  :local char [:pick $message $i]
+:for i from=0 to=([:len $SlackMessage] - 1) do={
+  :local char [:pick $SlackMessage $i]
   :if ($char = " ") do={
    :set $char "%20"
  }
@@ -45,4 +49,4 @@
   :set messageencoded ($messageencoded . $char)
 }
 
-/tool fetch url="https://slack.com/api/chat.postMessage?token=$token&channel=$channel&text=$messageencoded&icon_url=$iconurl&as_user=false&username=$botname";
+/tool fetch url="https://slack.com/api/chat.postMessage?token=$token&channel=%23$SlackChannel&text=$messageencoded&icon_url=$iconurl&as_user=false&username=$botname";
