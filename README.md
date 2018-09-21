@@ -15,7 +15,7 @@ it checks for a new firmware - when available, it upgrades firmware.
 
 ### Installation
 
-Using Winbox / Web admin (if you are familiar with command line, you already know hot to do it :)
+Using Winbox / Web admin (if you are familiar with command line, you already know how to do it :)
 - Go to *System / Scripts, Add new*
 - Name it, ie. "Auto Upgrade", select required policies (if you are lazy like me, select all boxes)
 - Paste source code to *Source* field
@@ -38,7 +38,7 @@ This is very useful when you need to downgrade Router OS for some reason - you h
 
 ### Installation
 
-Using Winbox / Web admin (if you are familiar with command line, you already know hot to do it :)
+Using Winbox / Web admin (if you are familiar with command line, you already know how to do it :)
 - Go to *System / Scripts, Add new*
 - Name it, ie. "Backup Config", select required policies (if you are lazy like me, select all boxes)
 - Paste source code to *Source* field
@@ -64,7 +64,7 @@ Slack
 - Generate your API token here: https://api.slack.com/docs/oauth-test-tokens
 - More information here: http://jeremyhall.com.au/mikrotik-routeros-slack-messaging-hack/
 
-Using Winbox / Web admin (if you are familiar with command line, you already know hot to do it :)
+Using Winbox / Web admin (if you are familiar with command line, you already know how to do it :)
 - Go to *System / Scripts, Add new*
 - Name it, ie. "MessageToSlack", select required policies (if you are lazy like me, select all boxes)
 - Paste source code to *Source* field
