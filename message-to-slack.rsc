@@ -5,7 +5,7 @@
 ##   script by Maxim Krusina, maxim@mfcc.cz
 ##   based on: http://jeremyhall.com.au/mikrotik-routeros-slack-messaging-hack/
 ##   created: 2017-08-21
-##   updated: 2017-09-16
+##   updated: 2018-09-22
 ##
 ##  usage:
 ##  in another script, first setup global variable then call this script:
@@ -23,9 +23,9 @@
 :global SlackMessage;
 :global SlackMessageAttachements;
 
-:local botname "MikroTik";
-:local token "xoxp-your-token-here";
-:local iconurl https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-12-08/16227284950_0c4cfc4b66e68c6273ad_48.jpg;
+:local botname "MikroTik"
+:local token "xoxp-your-token-here"
+:local iconurl https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-12-08/16227284950_0c4cfc4b66e68c6273ad_48.jpg
 
 
 ## Replace ASCII characters with URL encoded characters
@@ -57,28 +57,11 @@
   :return $stringEncoded;
 }
 
-
-## Send message to Slack
-
-:global SendSlackMessage do={
-
-  :global botname;
-  :global token;
-  :global iconurl;
-  :global urlEncode;
-
-  :local channel [$urlEncode $1];
-  :local message [$urlEncode $2];
-##  :local attachements [$3];
+:local channel [$urlEncode $SlackChannel];
+:local message [$urlEncode $SlackMessage];
+:local attachements [$urlEncode $SlackMessageAttachements];
 
 
-##  /tool fetch url="https://slack.com/api/chat.postMessage?token=$token&channel=$channel&text=$message&icon_url=$iconurl&as_user=false&username=$botname&attachments=$attachements";
-  /tool fetch url="https://slack.com/api/chat.postMessage?token=$token&channel=$channel&text=$message&icon_url=$iconurl&as_user=false&username=$botname";
+## Send the message to Slack
 
-}
-
-
-## Call the main function
-
-## $SendSlackMessage $SlackChannel $SlackMessage $SlackMessageAttachements;
-$SendSlackMessage $SlackChannel $SlackMessage;
+/tool fetch url="https://slack.com/api/chat.postMessage?token=$token&channel=$channel&text=$message&icon_url=$iconurl&as_user=false&username=$botname&attachments=$SlackMessageAttachements";
