@@ -14,13 +14,15 @@
 
 ## Notification e-mail
 :local email "your@email.com"
+## Update channel can take values: bugfix | current | development | release-candidate
+:global updChannel "bugfix"
 
 
 ########## Do the stuff
 
 ## Check for update
 /system package update
-set channel=current
+set channel=$updChannel
 check-for-updates
 
 ## Waint on slow connections
