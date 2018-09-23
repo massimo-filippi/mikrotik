@@ -79,6 +79,26 @@ Using Winbox / Web admin (if you are familiar with command line, you already kno
 
 
 
+## dhcp-notify-slack.rsc
+
+This script will send Slack message each time someone (or something) will get lease from your specific DHCP server - like when guest connects to Guests WiFi.
+
+### Installation
+
+Slack
+- Generate your API token here: https://api.slack.com/docs/oauth-test-tokens
+- More information here: http://jeremyhall.com.au/mikrotik-routeros-slack-messaging-hack/
+
+Using Winbox / Web admin (if you are familiar with command line, you already know how to do it :)
+- If not already done, install the *message-to-slack.rsc* script from this repository
+- Go to *IP / DHCP Server*
+- Click on DHCP server where you want notifications
+- Paste source code to *Lease Script* field
+- Edit variables *SlackChannel* and *SlackMessage* regarding your needs
+- Save settings
+
+
+
 Nice MikroTik'ing
 Maxim Krušina, Massimo Filippi, s.r.o.
 maxim@mfcc.cz
