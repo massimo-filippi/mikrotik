@@ -23,7 +23,7 @@
 :global SlackMessage;
 :global SlackMessageAttachements;
 
-:local botname "MikroTik"
+:local botname [/system identity get name];
 :local token "xoxp-your-token-here"
 :local iconurl https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-12-08/16227284950_0c4cfc4b66e68c6273ad_48.jpg
 

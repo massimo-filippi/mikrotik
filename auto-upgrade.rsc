@@ -15,7 +15,7 @@
 ## Notification e-mail
 :local email "your@email.com"
 ## Update channel can take values: bugfix | current | development | release-candidate
-:global updChannel "bugfix"
+:global updChannel "current"
 
 
 ########## Do the stuff
@@ -29,15 +29,15 @@ check-for-updates
 :delay 15s;
 
 ## Important note: "installed-version" was "current-version" on older Roter OSes
-:if ([get installed-version] != [get latest-version]) do={ 
+:if ([get installed-version] != [get latest-version]) do={
 
    ## New version of RouterOS available, let's upgrade
    /tool e-mail send to="$email" subject="Upgrading RouterOS on router $[/system identity get name]" body="Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])"
-   :log info ("Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])")     
+   :log info ("Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])")
 
    ## Wait for mail to be send & upgrade
    :delay 15s;
-   
+
    ## "install" command is reincarnation of the "upgrade" command - doing exactly the same but under a different name
    install
 
@@ -48,12 +48,12 @@ check-for-updates
 
    /system routerboard
 
-   :if ( [get current-firmware] != [get upgrade-firmware]) do={ 
+   :if ( [get current-firmware] != [get upgrade-firmware]) do={
 
       ## New version of firmware available, let's upgrade
       /tool e-mail send to="$email" subject="Upgrading firmware on router $[/system identity get name]" body="Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]"
       :log info ("Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]")
-      
+
       ## Wait for mail to be send & upgrade
       :delay 15s;
       upgrade
