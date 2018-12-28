@@ -17,9 +17,6 @@
 
 ## Update channel can take values before 6.43.8: bugfix    | current | development | release-candidate
 ## Update channel can take values after 6.43.8:  long-term | stable  | development | testing
-## MAJOR CHANGES IN v6.43.7:
-## upgrade - release channels renamed - "bugfix" to "long-term", "current" to "stable" and "release candidate" to "testing";
-## upgrade - "testing" release channel now can contain "beta" together with "release-candidate" versions;
 :global updChannel "stable"
 
 
