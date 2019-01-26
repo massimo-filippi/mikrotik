@@ -51,13 +51,9 @@
        /tool e-mail send to="$email" subject="Upgrading firmware on router $[/system identity get name]" body="Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]"
    }
 
-   ## Wait for mail to be sent & upgrade
-   :delay 15s;
+   ## Upgrade (it will no reboot, we'll do it later)
    upgrade
-
-   ## Wait for upgrade
-   $rebootRequired=true
-   :delay 180s;
+   :set rebootRequired true
 
 }
 
@@ -98,7 +94,26 @@ check-for-updates
 
     :if ($rebootRequired) do={
         # Firmware was upgraded, but not RouterOS, so we need to reboot to finish firmware upgrade
-        /system reboot
-    }
 
+        ## Notify via Slack
+        :if ($notifyViaSlack) do={
+            :global SlackMessage "Rebooting...";
+            :global SlackMessageAttachements  "";
+            /system script run "Message To Slack";
+        }
+
+        /system reboot
+
+    } else={
+
+        # No firmware nor RouterOS upgrade available, nothing to do, just log info
+        :log info ("No firmware nor RouterOS upgrade found.")
+
+        ## Notify via Slack
+        :if ($notifyViaSlack) do={
+            :global SlackMessage "No firmware nor RouterOS upgrade found.";
+            :global SlackMessageAttachements  "";
+            /system script run "Message To Slack";
+        }
+    }
 }
