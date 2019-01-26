@@ -12,7 +12,7 @@
 ########## Set variables
 
 ## Base filename
-:local filename "daily-backup-myroutername"
+:local filename         "daily-backup-myroutername"
 
 ## FTP server 1 for upload
 :local ftp1Address      "ftp-1-hostname"
@@ -27,13 +27,13 @@
 :local ftp2Path         "ftp-2-path"
 
 ## Log to Slack
-:local logToSlack       true
+:local notifyViaSlack   true
 :global SlackChannel    "#log"
 
 
 ########## Message to Slack
 
-:if ($logToSlack) do={
+:if ($notifyViaSlack) do={
     :global SlackMessage "Creating configuration backup on router *$[/system identity get name]*";
     :global SlackMessageAttachements  "";
     /system script run "Message To Slack";
@@ -61,7 +61,7 @@
 
 ########## Message to Slack
 
-:if ($logToSlack) do={
+:if ($notifyViaSlack) do={
     :global SlackMessage "Backup upload to FTP *$ftp1Address*";
     :global SlackMessageAttachements  "";
     /system script run "Message To Slack";
@@ -78,7 +78,7 @@
     ## Upload to .rsc to FTP 2
     /tool fetch address=$ftp2Address src-path="$filename.rsc" user=$ftp2User  mode=ftp password=$ftp2Password dst-path=($ftp2Path . $filename . ".rsc") upload=yes port=21
 
-    :if ($logToSlack) do={
+    :if ($notifyViaSlack) do={
         :global SlackMessage "Backup upload to FTP *$ftp2Address*";
         :global SlackMessageAttachements  "";
         /system script run "Message To Slack";
@@ -92,7 +92,7 @@
 
 ########## Message to Slack
 
-:if ($logToSlack) do={
+:if ($notifyViaSlack) do={
     :global SlackMessage "Configuration backup on router *$[/system identity get name]* done";
     :global SlackMessageAttachements  "";
     /system script run "Message To Slack";
