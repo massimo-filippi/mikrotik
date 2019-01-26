@@ -66,7 +66,7 @@ Slack
 
 Using Winbox / Web admin (if you are familiar with command line, you already know how to do it :)
 - Go to *System / Scripts, Add new*
-- Name it, ie. "MessageToSlack", select required policies (if you are lazy like me, select all boxes)
+- Name it, ie. "Message To Slack", select required policies (if you are lazy like me, select all boxes)
 - Paste source code to *Source* field
 - Edit variables *botname* and *token* in section *Set variables* regarding your needs
 - Save script
@@ -74,7 +74,7 @@ Using Winbox / Web admin (if you are familiar with command line, you already kno
 ```
 :global SlackMessage "my message"
 :global SlackChannel "my-channel"
-/system script run MessageToSlack;
+/system script run "Message To Slack";
 ```
 
 
