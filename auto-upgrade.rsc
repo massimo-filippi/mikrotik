@@ -14,8 +14,8 @@
 
 ## Notification e-mail
 :local email "your@email.com"
-## Update channel can take values: bugfix | current | development | release-candidate
-:global updChannel "current"
+## Update channel can take values: development | long-term | stable | testing
+:global updChannel "stable"
 
 
 ########## Do the stuff
