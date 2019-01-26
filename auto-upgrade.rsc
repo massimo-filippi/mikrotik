@@ -14,8 +14,10 @@
 
 ## Notification e-mail
 :local email "your@email.com"
-## Update channel can take values: bugfix | current | development | release-candidate
-:global updChannel "current"
+
+## Update channel can take values before 6.43.8: bugfix    | current | development | release-candidate
+## Update channel can take values after 6.43.8:  long-term | stable  | development | testing
+:global updChannel "stable"
 
 
 ########## Do the stuff
