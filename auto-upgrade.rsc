@@ -25,7 +25,7 @@
 set channel=$updChannel
 check-for-updates
 
-## Waint on slow connections
+## Wait on slow connections
 :delay 15s;
 
 ## Important note: "installed-version" was "current-version" on older Roter OSes
@@ -35,7 +35,7 @@ check-for-updates
    /tool e-mail send to="$email" subject="Upgrading RouterOS on router $[/system identity get name]" body="Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])"
    :log info ("Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])")
 
-   ## Wait for mail to be send & upgrade
+   ## Wait for mail to be sent & upgrade
    :delay 15s;
 
    ## "install" command is reincarnation of the "upgrade" command - doing exactly the same but under a different name
@@ -54,7 +54,7 @@ check-for-updates
       /tool e-mail send to="$email" subject="Upgrading firmware on router $[/system identity get name]" body="Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]"
       :log info ("Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]")
 
-      ## Wait for mail to be send & upgrade
+      ## Wait for mail to be sent & upgrade
       :delay 15s;
       upgrade
 
