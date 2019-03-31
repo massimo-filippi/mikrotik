@@ -108,6 +108,11 @@ check-for-updates
 
         # No firmware nor RouterOS upgrade available, nothing to do, just log info
         :log info ("No firmware nor RouterOS upgrade found.")
+        
+        ## Notificação por E-mail
+        :if ($notifyViaMail) do={
+        /tool e-mail send to="$email" subject="No firmware nor RouterOS upgrade found on device $[/system identity get name]" body="No firmware nor RouterOS upgrade found on device $[/system identity get name])"
+        }
 
         ## Notify via Slack
         :if ($notifyViaSlack) do={
