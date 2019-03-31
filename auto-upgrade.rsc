@@ -23,6 +23,7 @@
 ## Notify via E-mail
 :local notifyViaMail    true
 :local email            "your@email.com"
+:local ccemail               "yourcc@email.com"
 
 
 ########## Upgrade firmware
@@ -48,7 +49,7 @@
 
    ## Notify via E-mail
    :if ($notifyViaMail) do={
-       /tool e-mail send to="$email" subject="Upgrading firmware on router $[/system identity get name]" body="Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]"
+       /tool e-mail send to="$email" cc="$ccemail" subject="Upgrading firmware on router $[/system identity get name]" body="Upgrading firmware on router $[/system identity get name] from $[/system routerboard get current-firmware] to $[/system routerboard get upgrade-firmware]"
    }
 
    ## Upgrade (it will no reboot, we'll do it later)
@@ -83,7 +84,7 @@ check-for-updates
 
    ## Notify via E-mail
    :if ($notifyViaMail) do={
-       /tool e-mail send to="$email" subject="Upgrading RouterOS on router $[/system identity get name]" body="Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])"
+       /tool e-mail send to="$email" cc="$ccemail" subject="Upgrading RouterOS on router $[/system identity get name]" body="Upgrading RouterOS on router $[/system identity get name] from $[/system package update get installed-version] to $[/system package update get latest-version] (channel:$[/system package update get channel])"
    }
 
    ## Wait for mail to be sent & upgrade
